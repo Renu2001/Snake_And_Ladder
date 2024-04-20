@@ -13,11 +13,16 @@
         
         public int RollDie()
         {
+            while (initial_position < 100)
+            {
                 number = rnd.Next(1, 7);
                 Console.WriteLine("Number on Die is  " + number);
                 Options();
                 Console.WriteLine("Current Position: " + initial_position);
-                return number;
+
+            }
+            return number;
+
         }
 
         public void Options()
@@ -37,6 +42,8 @@
                     break;
                 case 3:
                     initial_position = initial_position - number;
+                    if (initial_position < 0)
+                        initial_position = 0;
                     Console.WriteLine(initial_position);
                     Console.WriteLine("Snake");
                     break;
