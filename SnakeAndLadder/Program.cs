@@ -10,9 +10,10 @@
         {
             initial_position = 0;
         }
-        
+
         public int RollDie()
         {
+
             while (initial_position < 100)
             {
                 number = rnd.Next(1, 7);
@@ -22,12 +23,11 @@
 
             }
             return number;
-
         }
 
         public void Options()
         {
-            int option = rnd.Next(1,4);
+            int option = rnd.Next(1, 4);
 
             switch (option)
             {
@@ -36,7 +36,9 @@
                     Console.WriteLine(initial_position);
                     break;
                 case 2:
-                    initial_position= initial_position + number;
+                    initial_position = initial_position + number;
+                    if (initial_position > 100)
+                        initial_position = initial_position - number;
                     Console.WriteLine(initial_position);
                     Console.WriteLine("Ladder");
                     break;
@@ -47,17 +49,17 @@
                     Console.WriteLine(initial_position);
                     Console.WriteLine("Snake");
                     break;
-                
+
             }
         }
         static void Main(string[] args)
         {
             Program program = new Program();
-            
-                program.RollDie();
-            
-            
-            
+
+            program.RollDie();
+
+
+
         }
     }
 }
