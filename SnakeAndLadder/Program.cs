@@ -4,6 +4,7 @@
     {
         int initial_position;
         int number;
+        int count = 0;
 
         Random rnd = new Random();
         public Program()
@@ -20,8 +21,10 @@
                 Console.WriteLine("Number on Die is  " + number);
                 Options();
                 Console.WriteLine("Current Position: " + initial_position);
-
+                count++;
             }
+            Console.WriteLine("YOU WON");
+            Console.WriteLine("Count of Dice : " +  count);
             return number;
         }
 
