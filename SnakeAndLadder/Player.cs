@@ -68,38 +68,42 @@ namespace SnakeAndLadder
 
 
         }
-        public void PlayGame(Player player1, Player player2)
+        public void PlayGame(Player[] players)
         {
-            while (player1.initial_position < 100 && player2.initial_position < 100)
-            {
 
-                player1.RollDie(player1.player_name);
+            bool won = false;
+            while (true)
+                {
+              
+                for (int i = 0; i < players.Length; i++)
+                    {
+                        Player curr = players[i];
+                       curr.RollDie(curr.player_name);
+                        if(curr.initial_position == 100)
+                        {
+                            Console.WriteLine($"WINNER IS {curr.player_name} !!!!");
+                            won = true;
+                            break;
+                        }
 
-                if (player1.initial_position != 100)
-                    player2.RollDie(player2.player_name);
-                else
+                    }
+                if(won == true)
+                {
                     break;
+                }
 
-            }
+                }
 
-            Console.WriteLine("\n");
-            if (player1.initial_position == player2.initial_position)
-            {
                 Console.WriteLine("\n");
-                if (player1.count > player2.count)
-                    Console.WriteLine($"WINNER IS {player1.player_name} !!!!");
-                else
-                    Console.WriteLine($"WINNER IS {player2.player_name} !!!!");
-            }
-            else if (player1.initial_position == 100)
-                Console.WriteLine($"WINNER IS {player1.player_name} !!!!");
-            else
-                Console.WriteLine($"WINNER IS {player2.player_name} !!!!");
+                Console.WriteLine("Total Counts of Dice Played by players");
+                for(int j = 0; j < players.Length; j++)
+                {
+                    Console.WriteLine($"Count of Dice of {players[j].player_name} : " + players[j].count);
 
-            Console.WriteLine("\n");
-            Console.WriteLine("Total Counts of Dice Played by players");
-            Console.WriteLine($"Count of Dice of {player1.player_name} : " + player1.count);
-            Console.WriteLine($"Count of Dice of {player2.player_name} : " + player2.count);
+                }
+
+            
+
         }
 
     }

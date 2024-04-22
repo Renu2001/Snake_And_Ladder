@@ -6,25 +6,33 @@ namespace SnakeAndLadder
 {
     internal class Program 
     {
+        
+        int i;
 
         public void StartGame()
         {
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             Console.WriteLine("Welcome to Snake and Ladder Game");
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            Console.Write("Enter Player 1 Name : ");
-            string playername1 = Console.ReadLine();
-            Console.Write("Enter Player 2 Name : ");
-            string playername2 = Console.ReadLine();
+           
+            Player play = new Player();
 
-            Player player1 = new Player(playername1);
-            Player player2 = new Player(playername2);
+            Console.WriteLine("How many players ");
+            int playernumber= Convert.ToInt32(Console.ReadLine());
+            Player[] players = new Player[playernumber];
+            for (i = 0; i < playernumber; i++)
+            {
+                Console.Write($"Enter Player {i+1} Name: ");
+                string playerName = Console.ReadLine();
+                players[i] = new Player(playerName);
+            }
 
-            player1.PlayGame(player1, player2);
+            play.PlayGame(players);
+
             Console.WriteLine("\n");
             Console.WriteLine("Do you want to play again? type yes or no");
             string choice = Console.ReadLine();
-            switch (choice)
+            switch (choice.ToLower())
             {
                 case "yes":
                     StartGame();
