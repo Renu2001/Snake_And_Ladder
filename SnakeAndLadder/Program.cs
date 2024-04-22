@@ -1,110 +1,46 @@
 ﻿using System.Numerics;
 using System.Threading.Channels;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SnakeAndLadder
 {
-    internal class Program
+    internal class Program 
     {
-        int initial_position;
-        int number;
-        int count;
 
-        Random rnd = new Random();
-        public Program()
+        public void StartGame()
         {
-            this.initial_position = 0;
-            this.count = 0;
-        }
-        static Program()
-        {
-            Console.WriteLine("!!! SNAKE AND LADDER GAME !!!");
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            Console.WriteLine("Welcome to Snake and Ladder Game");
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            Console.Write("Enter Player 1 Name : ");
+            string playername1 = Console.ReadLine();
+            Console.Write("Enter Player 2 Name : ");
+            string playername2 = Console.ReadLine();
 
-        }
+            Player player1 = new Player(playername1);
+            Player player2 = new Player(playername2);
 
-        public int RollDie(string player)
-        {
+            player1.PlayGame(player1, player2);
             Console.WriteLine("\n");
-            Console.WriteLine($"{player} playing......");
-            number = rnd.Next(1, 7);
-            Console.WriteLine("Number on Die is  " + number);
-            Options(player);
-            this.count++;
-            return number;
-        }
-
-        public void Options(string player)
-        {
-            int option = rnd.Next(1, 4);
-
-            switch (option)
+            Console.WriteLine("Do you want to play again? type yes or no");
+            string choice = Console.ReadLine();
+            switch (choice)
             {
-                case 1:
-                    Console.WriteLine("No Play");
-                    Console.WriteLine($"Current Position of {player} : " + initial_position);
+                case "yes":
+                    StartGame();
                     break;
-                case 2:
-                    initial_position = initial_position + number;
-                    if (initial_position > 100)
-                        initial_position = initial_position - number;
-                    Console.WriteLine("Ladder");
-                    Console.WriteLine($"Current Position of {player} : " + initial_position);
-                    if (initial_position == 100)
-                        break;
-                    else
-                        RollDie(player);
+                case "no":
+                    Console.WriteLine("Thanks for playing the game ....");
                     break;
-                case 3:
-                    initial_position = initial_position - number;
-                    if (initial_position < 0)
-                        initial_position = 0;
-                    Console.WriteLine("Snake");
-                    Console.WriteLine($"Current Position of {player} : " + initial_position);
-                    break;
+
 
             }
-
-
-
         }
         static void Main(string[] args)
         {
-
-            Program player1 = new Program();
-            Program player2 = new Program();
-
-
-            while (player1.initial_position < 100 && player2.initial_position < 100)
-            {
-
-                player1.RollDie("Player 1");
-
-                if (player1.initial_position != 100)
-                    player2.RollDie("Player 2");
-                else
-                    break;
-
-
-
-            }
-            Console.WriteLine("\n");
-            if (player1.initial_position == player2.initial_position)
-            {
-                Console.WriteLine("\n");
-                if (player1.count > player2.count)
-                    Console.WriteLine("WINNER IS Player 1 !!!!");
-                else
-                    Console.WriteLine("WINNER IS Player 2 !!!!");
-            }
-            else if (player1.initial_position == 100)
-                Console.WriteLine("WINNER IS Player 1 !!!!");
-            else
-                Console.WriteLine("WINNER IS Player 2 !!!!");
-
-            Console.WriteLine("\n");
-            Console.WriteLine("Total Counts of Dice Played by players");
-            Console.WriteLine("Count of Dice of player 1: " + player1.count);
-            Console.WriteLine("Count of Dice of player 2: " + player2.count);
-        }
+            Program game = new Program();
+            game.StartGame();
+        }   
 
     }
 }
