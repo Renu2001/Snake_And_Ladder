@@ -19,12 +19,12 @@ namespace SnakeAndLadder
 
             Console.WriteLine("How many players ");
             int playernumber= Convert.ToInt32(Console.ReadLine());
-            Player[] players = new Player[playernumber];
-            for (i = 0; i < playernumber; i++)
+            List<Player> players = new List<Player>();
+           for (int i = 0; i < playernumber; i++) 
             {
                 Console.Write($"Enter Player {i+1} Name: ");
-                string playerName = Console.ReadLine();
-                players[i] = new Player(playerName);
+                string playername = Console.ReadLine();
+                players.Add(new Player(playername));
             }
 
             play.PlayGame(players);

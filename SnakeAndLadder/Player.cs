@@ -68,39 +68,47 @@ namespace SnakeAndLadder
 
 
         }
-        public void PlayGame(Player[] players)
+        public void PlayGame(List<Player> players)
         {
 
-            bool won = false;
-            while (true)
+            List<string> winners = new List<string>(); 
+           
+            while (players.Count > 1)
                 {
               
-                for (int i = 0; i < players.Length; i++)
+                for (int i = 0; i < players.Count; i++)
                     {
                         Player curr = players[i];
                        curr.RollDie(curr.player_name);
                         if(curr.initial_position == 100)
                         {
-                            Console.WriteLine($"WINNER IS {curr.player_name} !!!!");
-                            won = true;
-                            break;
+                          
+                            winners.Add(curr.player_name);
+                            players.Remove(curr);
+                            i--;
+                        
                         }
+                    if (players.Count == 1)
+                        break;
 
                     }
-                if(won == true)
-                {
-                    break;
-                }
+                
+                
+            }
 
-                }
-
+            for(int i = 0;i < winners.Count;i++)
+            {
                 Console.WriteLine("\n");
-                Console.WriteLine("Total Counts of Dice Played by players");
-                for(int j = 0; j < players.Length; j++)
+                Console.WriteLine($"Congrats {winners[i]} you are at {i+1} position ");
+            }
+                
+                //Console.WriteLine("Total Counts of Dice Played by players");
+            
+            /*for (int j = 0; j < players.Count; j++)
                 {
                     Console.WriteLine($"Count of Dice of {players[j].player_name} : " + players[j].count);
 
-                }
+                }*/
 
             
 
