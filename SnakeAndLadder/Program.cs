@@ -7,7 +7,7 @@ namespace SnakeAndLadder
     {
         int initial_position;
         int number;
-        int count ;
+        int count;
 
         Random rnd = new Random();
         public Program()
@@ -62,28 +62,28 @@ namespace SnakeAndLadder
                     break;
 
             }
-            
+
 
 
         }
         static void Main(string[] args)
         {
-            
+
             Program player1 = new Program();
             Program player2 = new Program();
 
 
             while (player1.initial_position < 100 && player2.initial_position < 100)
             {
-                
+
                 player1.RollDie("Player 1");
 
                 if (player1.initial_position != 100)
                     player2.RollDie("Player 2");
-                else 
+                else
                     break;
-               
-                    
+
+
 
             }
             Console.WriteLine("\n");
@@ -95,7 +95,7 @@ namespace SnakeAndLadder
                 else
                     Console.WriteLine("WINNER IS Player 2 !!!!");
             }
-            else if(player1.initial_position == 100)
+            else if (player1.initial_position == 100)
                 Console.WriteLine("WINNER IS Player 1 !!!!");
             else
                 Console.WriteLine("WINNER IS Player 2 !!!!");
@@ -108,4 +108,3 @@ namespace SnakeAndLadder
 
     }
 }
-
