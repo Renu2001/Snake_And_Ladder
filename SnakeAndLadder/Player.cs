@@ -78,19 +78,19 @@ namespace SnakeAndLadder
               
                 for (int i = 0; i < players.Count; i++)
                     {
-                        Player curr = players[i];
-                       curr.RollDie(curr.player_name);
-                        if(curr.initial_position == 100)
+                        Player currentplayer = players[i];
+                        currentplayer.RollDie(currentplayer.player_name);
+                        if(currentplayer.initial_position == 100)
                         {
                           
-                            winners.Add(curr.player_name);
-                            players.Remove(curr);
+                            winners.Add(currentplayer.player_name);
+                            players.Remove(currentplayer);
                             i--;
                         
                         }
                     if (players.Count == 1)
                         break;
-
+                    
                     }
                 
                 
@@ -102,14 +102,14 @@ namespace SnakeAndLadder
                 Console.WriteLine($"Congrats {winners[i]} you are at {i+1} position ");
             }
                 
-                //Console.WriteLine("Total Counts of Dice Played by players");
-            
-            /*for (int j = 0; j < players.Count; j++)
+            /*Console.WriteLine("Total Counts of Dice Played by players");
+
+            for (int j = 0; j < players.Count; j++)
                 {
                     Console.WriteLine($"Count of Dice of {players[j].player_name} : " + players[j].count);
 
-                }*/
-
+                }
+            */
             
 
         }
